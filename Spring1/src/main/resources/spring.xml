@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!-- 1. Service Bean을 선언 한다. -->
+    <bean id="custService" class="com.hana.app.service.CustService">
+        <constructor-arg name="dao" ref="custDao" />
+    </bean>
+
+    <!-- 2. Dao Bean을 선언 한다. -->
+    <!--    xml 조작으로 손쉽게 변경할 수 있다-->
+<!--    <bean id="custDao" class="com.hana.app.repository.CustDao"></bean>-->
+    <bean id="custDao" class="com.hana.app.repository.CustMySQLDao"></bean>
+
+</beans>
