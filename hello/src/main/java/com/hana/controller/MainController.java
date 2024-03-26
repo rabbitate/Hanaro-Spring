@@ -9,7 +9,7 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    @RequestMapping
+    @RequestMapping("/")
     public String main(Model m) {
         List<String> list = new ArrayList<>();
         list.add("DATA1");
