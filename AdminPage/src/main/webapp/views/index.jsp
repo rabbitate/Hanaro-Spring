@@ -30,7 +30,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/index.html"/>">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -60,13 +60,13 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>Components</span>
+                        <span>Customer</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Custom Components:</h6>
-                            <a class="collapse-item" href="buttons.html">Buttons</a>
-                            <a class="collapse-item" href="cards.html">Cards</a>
+                            <h6 class="collapse-header">Customer Management:</h6>
+                            <a class="collapse-item" href="<c:url value="/cust/add"/>">Add</a>
+                            <a class="collapse-item" href="<c:url value="/cust/get"/>">Get</a>
                         </div>
                     </div>
                 </li>
@@ -76,16 +76,14 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                         aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fas fa-fw fa-wrench"></i>
-                        <span>Utilities</span>
+                        <span>Item</span>
                     </a>
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Custom Utilities:</h6>
-                            <a class="collapse-item" href="utilities-color.html">Colors</a>
-                            <a class="collapse-item" href="utilities-border.html">Borders</a>
-                            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                            <a class="collapse-item" href="utilities-other.html">Other</a>
+                            <h6 class="collapse-header">Item Management:</h6>
+                            <a class="collapse-item" href="<c:url value="/item/add"/>">Add</a>
+                            <a class="collapse-item" href="<c:url value="/item/get"/>">Get</a>
                         </div>
                     </div>
                 </li>
@@ -223,8 +221,7 @@
                                     </h6>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                                alt="...">
+                                            <img class="rounded-circle" src="<c:url value="/img/undraw_profile_1.svg"/>"                                                alt="...">
                                             <div class="status-indicator bg-success"></div>
                                         </div>
                                         <div class="font-weight-bold">
@@ -235,8 +232,7 @@
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                                alt="...">
+                                            <img class="rounded-circle" src="<c:url value="/img/undraw_profile_2.svg"/>"                                                alt="...">
                                             <div class="status-indicator"></div>
                                         </div>
                                         <div>
@@ -247,8 +243,7 @@
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                                alt="...">
+                                            <img class="rounded-circle" src="<c:url value="/img/undraw_profile_3.svg"/>"                                                alt="...">
                                             <div class="status-indicator bg-warning"></div>
                                         </div>
                                         <div>
@@ -275,36 +270,43 @@
 
                             <div class="topbar-divider d-none d-sm-block"></div>
 
+                            <c:choose>
+                                <c:when test="${id == null}">
+                                    <a href="#" data-toggle="modal" data-target="#loginModal">login</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="nav-item dropdown no-arrow">
+                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                            <img class="img-profile rounded-circle"
+                                                 src="<c:url value="/img/undraw_profile.svg"/>">
+                                        </a>
+                                        <!-- Dropdown - User Information -->
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                             aria-labelledby="userDropdown">
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Profile
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Settings
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Activity Log
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Logout
+                                            </a>
+                                        </div>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
                             <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                    <img class="img-profile rounded-circle"
-                                        src="img/undraw_profile.svg">
-                                </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Activity Log
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </li>
 
                         </ul>
 
@@ -346,6 +348,37 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
+        <!-- Login Modal-->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logineModalLabel">Log in</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="login_form" action="">
+                            <div class="form-group">
+                                <label for="id">ID:</label>
+                                <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                            </div>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -360,7 +393,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="<c:url value="/login.html"/>">Logout</a>
                     </div>
                 </div>
             </div>
@@ -382,6 +415,13 @@
         <!-- Page level custom scripts -->
         <script src="<c:url value="/js/demo/chart-area-demo.js"/>"></script>
         <script src="<c:url value="/js/demo/chart-pie-demo.js"/>"></script>
+
+        <!-- Page level plugins -->
+        <script src="<c:url value="/vendor/datatables/jquery.dataTables.min.js" />"></script>
+        <script src="<c:url value="/vendor/datatables/dataTables.bootstrap4.min.js" />"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="<c:url value="/js/demo/datatables-demo.js" />"></script>
 
     </body>
 
