@@ -26,9 +26,8 @@
     <table class="table table-striped" id="cust_tb">
         <thead>
         <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>ID</th>
+            <th>Name</th>
         </tr>
         </thead>
         <tbody>
