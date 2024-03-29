@@ -3,12 +3,11 @@ package com.hana.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/geo")
-public class GeoController {
-    String dir = "geo/";
+@RequestMapping("/chart")
+public class ChartController {
+    String dir = "chart/";
     @RequestMapping("/")
     public String main(Model model) {
         model.addAttribute("left", dir + "left");
@@ -16,32 +15,24 @@ public class GeoController {
         return "index";
     }
 
-    @RequestMapping("/geo1")
+    @RequestMapping("/chart1")
     public String geo1(Model model) {
         model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "geo1");
+        model.addAttribute("center", dir + "chart1");
         return "index";
     }
 
-    @RequestMapping("/geo2")
+    @RequestMapping("/chart2")
     public String geo2(Model model) {
         model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "geo2");
+        model.addAttribute("center", dir + "chart2");
         return "index";
     }
 
-    @RequestMapping("/geo3")
+    @RequestMapping("/chart3")
     public String geo3(Model model) {
         model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "geo3");
-        return "index";
-    }
-
-    @RequestMapping("/shopdetail")
-    public String shopdetail(Model model, @RequestParam("shopid") int shopid) {
-        model.addAttribute("shopid", shopid);
-        model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "detail");
+        model.addAttribute("center", dir + "chart3");
         return "index";
     }
 }

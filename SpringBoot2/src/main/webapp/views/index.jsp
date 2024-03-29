@@ -22,6 +22,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="<c:url value="/js/0327.js"/>"></script>
 
+        <!-- Kakao Map API -->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=220e7684231ba8e4ff5395788f23fd5f"></script>
+
         <style>
             .fakeimg {
                 height: 200px;
@@ -90,6 +93,9 @@
                         <a class="nav-link" href="#">Item</a>
                     </li>
                 </c:if>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/chart/"/>">Chart</a>
+                </li>
             </ul>
         </div>
     </nav>

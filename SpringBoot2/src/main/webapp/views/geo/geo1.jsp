@@ -1,15 +1,72 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rabbikim
-  Date: 3/27/24
-  Time: 9:37 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<style>
+    #geo1 > #kakaomap{
+        width:500px;
+        height: 400px;
+        border:2px solid red;
+    }
+</style>
+<script>
+    let geo1 = {
+        map:null,
+        latitude:0.0,
+        longitude:0.0,
+        init:function() {
+            if (navigator.geolocation) {
+                // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    geo1.latitude = position.coords.latitude;
+                    geo1.longitude = position.coords.longitude; // 경도
+
+                    var mapContainer = document.getElementById('kakaomap'), // 지도를 표시할 div
+                        mapOption = {
+                            center: new kakao.maps.LatLng(geo1.latitude, geo1.longitude), // 지도의 중심좌표
+                            level: 3 // 지도의 확대 레벨
+                        };
+                    geo1.map = new kakao.maps.Map(mapContainer, mapOption);
+                    geo1.display();
+                });
+            } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+                alert('error');
+            }
+        },
+        display:function(){
+            var mapTypeControl = new kakao.maps.MapTypeControl();
+            this.map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+            var zoomControl = new kakao.maps.ZoomControl();
+            this.map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+            var markerPosition  = new kakao.maps.LatLng(this.latitude,this.longitude);
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+            marker.setMap(this.map);
+
+            var iwContent =
+                '<div style="padding:5px;">Digital Hanaro<br><img style="width:50px;" src="https://lh3.googleusercontent.com/proxy/CQ6GpgSjLYwZ_QqH90iwBmMzwzsNJ_a76djRA0rN0OKMCtgAyedJvyrTXIJFC7KyEPeLkZuRdALSBPkN88UcvXw_ljL4WFts1Z3P3eDn2QF3iTuWUjEG58sVDmYs41eg-n5h5K-GvLLmTzU6mOVMrNF8AZqzMhC0zuyhbzL0jOfu6u0dS2m2Waj3V977JbsZXd487R9fFgTg7qQutN-KaJzXitlKN5OJGGYXhMP00bFlPafUnggVC75qCQg"></div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+            var infowindow = new kakao.maps.InfoWindow({
+                content : iwContent
+            });
+
+            kakao.maps.event.addListener(marker, 'mouseover', function() {
+                infowindow.open(geo1.map, marker);
+            });
+
+            kakao.maps.event.addListener(marker, 'mouseout', function() {
+                infowindow.close();
+            });
+            kakao.maps.event.addListener(marker, 'click', function() {
+                location.href='http://www.nate.com';
+            });
+        }
+    };
+    $(function(){
+        geo1.init();
+    });
+</script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="container">
+<div class="container" id="geo1">
     <h2>GEO1 Page</h2>
-    <h5>Title description, Sep 2, 2017</h5>
-    <div class="fakeimg">Fake Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <div id="kakaomap"></div>
 </div>
