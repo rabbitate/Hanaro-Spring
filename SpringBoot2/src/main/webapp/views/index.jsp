@@ -25,6 +25,13 @@
         <!-- Kakao Map API -->
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=220e7684231ba8e4ff5395788f23fd5f"></script>
 
+        <!-- HighChart API -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
         <style>
             .fakeimg {
                 height: 200px;
