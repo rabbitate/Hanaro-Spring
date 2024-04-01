@@ -1,0 +1,13 @@
+server:
+  port: 80
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+logging:
+  level:
+    root: info
+app:
+  dir:
+    imgdir: /Users/rabbikim/Library/CloudStorage/OneDrive-명지대학교/Doc/Digital Hana/실습/백엔드 개발/Hanaro-Spring/SpringBoot2/imgs
+    logdir: /Users/rabbikim/Library/CloudStorage/OneDrive-명지대학교/Doc/Digital Hana/실습/백엔드 개발/Hanaro-Spring/SpringBoot2/logs

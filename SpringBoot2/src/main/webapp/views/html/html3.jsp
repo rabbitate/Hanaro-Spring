@@ -21,7 +21,7 @@
         <tbody>
             <c:forEach var="c" items="${custs}">
                 <tr>
-                    <td><a href="<c:url value="html/get"/>?id=${c.id}">${c.id}</a></td>
+                    <td><a href="<c:url value="/html/get"/>?id=${c.id}">${c.id}</a></td>
                     <td>${c.pwd}</td>
                     <td>${c.name}</td>
                 </tr>
