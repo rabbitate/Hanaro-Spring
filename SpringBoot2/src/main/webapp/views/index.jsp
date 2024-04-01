@@ -26,11 +26,21 @@
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=220e7684231ba8e4ff5395788f23fd5f"></script>
 
         <!-- HighChart API -->
-        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+
         <script src="https://code.highcharts.com/modules/series-label.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+
+        <script src="https://code.highcharts.com/modules/datagrouping.js"></script>
+        <script src="https://code.highcharts.com/modules/windbarb.js"></script>
+        <script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
         <style>
             .fakeimg {

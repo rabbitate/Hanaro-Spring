@@ -1,8 +1,11 @@
 package com.hana.controller;
 
+import com.hana.app.data.dto.Chart2Dto;
 import com.hana.app.data.dto.CustDto;
 import com.hana.app.data.dto.KeywordDto;
 import com.hana.app.data.dto.ShopDto;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,6 +70,53 @@ public class AjaxImplController {
         }
 
         return list;
+    }
+
+    @RequestMapping("/chart2")
+    public Object chart2() {
+        List<Chart2Dto> list = new ArrayList<>();
+        list.add(new Chart2Dto("S001", 10, 20, 30, 20, 10, 15));
+        list.add(new Chart2Dto("S002", 13, 30, 60, 10, 10, 12));
+        list.add(new Chart2Dto("S003", 11, 10, 80, 80, 15, 35));
+        list.add(new Chart2Dto("S004", 18, 23, 20, 90, 22, 45));
+
+        JSONArray jsonArray = new JSONArray();
+
+        list.stream().forEach(chart2Dto -> {
+            JSONObject jsonObject = new JSONObject();
+
+            // [{name: "", data: []}, ...]
+            jsonObject.put("name", chart2Dto.getName());
+            jsonObject.put("data", chart2Dto.getM());
+
+            jsonArray.add(jsonObject);
+        });
+
+        return jsonArray;
+    }
+
+    @RequestMapping("/chart4")
+    public Object chart4(@RequestParam("gender") String gender) {
+        JSONArray jsonArray = new JSONArray();
+
+        List<Chart2Dto> list = new ArrayList<>();
+        list.add(new Chart2Dto("Female", 30, 10, 10, 10, 20, 20));
+        list.add(new Chart2Dto("Male", 40, 10, 10, 10, 10, 20));
+
+        list.stream().filter(c -> c.getName().equals(gender)).forEach(c -> {
+            c.getM().stream().forEach(n -> {
+                JSONArray jsonArray2 = new JSONArray();
+                // ["", 20]]
+                jsonArray2.add("OTT" );
+                jsonArray2.add(n);
+                jsonArray.add(jsonArray2);
+            });
+        });
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data", jsonArray);
+        jsonObject.put("title", gender);
+        return jsonObject;
     }
 
     @RequestMapping("/checkid")
