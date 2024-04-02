@@ -1,0 +1,26 @@
+<script>
+    // 문서가 준비되었다면 객체 init
+    $(function () {
+        html2.init();
+    });
+
+    $(document).ready(function(){
+        $('#btn').click(function(){
+            alert('OK');
+        });
+    });
+</script>
+<div class="container">
+    <h2>HTML2 Page</h2>
+    <button id="btn" type="button" class="btn btn-success">Success</button>
+    <table class="table table-striped" id="cust_tb">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>

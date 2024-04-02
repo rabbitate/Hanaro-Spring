@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/ajax")
-public class AjaxController {
-    String dir = "ajax/";
+@RequestMapping("/jquery")
+public class JqueryController {
+    String dir = "jquery/";
     @RequestMapping("/")
     public String main(Model model) {
         model.addAttribute("left", dir + "left");
@@ -15,24 +15,24 @@ public class AjaxController {
         return "index";
     }
 
-    @RequestMapping("/ajax1")
-    public String geo1(Model model) {
+    @RequestMapping("/jquery1")
+    public String jquery1(Model model) {
         model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "ajax1");
+        model.addAttribute("center", dir + "jquery1");
         return "index";
     }
 
-    @RequestMapping("/ajax2")
-    public String geo2(Model model) {
+    @RequestMapping("/jquery2")
+    public String jquery2(Model model) {
         model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "ajax2");
+        model.addAttribute("center", dir + "jquery2");
         return "index";
     }
 
-    @RequestMapping("/ajax3")
-    public String geo3(Model model) {
+    @RequestMapping("/jquery3")
+    public String jquery3(Model model) {
         model.addAttribute("left", dir + "left");
-        model.addAttribute("center", dir + "ajax3");
+        model.addAttribute("center", dir + "jquery3");
         return "index";
     }
 }
