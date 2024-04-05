@@ -19,14 +19,14 @@ public class CustController {
     String dir = "cust/";
 
     @RequestMapping("/get")
-    public String get(Model model){
+    public String get(Model model) throws Exception {
         // Database에서 데이터를 가지고 온다.
         List<CustDto> list = null;
 
         try {
             list = custService.get();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new Exception("ER0001");
         }
         model.addAttribute("custs",list);
         model.addAttribute("center",dir + "get");
@@ -40,11 +40,11 @@ public class CustController {
     }
 
     @RequestMapping("/addimpl")
-    public String addimpl(CustDto custDto) {
+    public String addimpl(CustDto custDto) throws Exception {
         try {
             custService.add(custDto);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new Exception("ER0001");
         }
         return "redirect:/cust/get";
     }
