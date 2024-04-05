@@ -29,3 +29,5 @@ app:
   dir:
     imgdir: file:/Users/rabbikim/Desktop/project/imgs/
     logdir: file:/Users/rabbikim/Desktop/project/logs/
+  url:
+    chart-url: http://127.0.0.1:81
