@@ -127,8 +127,8 @@
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Item Management:</h6>
-                            <a class="collapse-item" href="utilities-color.html">Add</a>
-                            <a class="collapse-item" href="<c:url value="/item/get"/>">Get</a>
+                            <a class="collapse-item" href="<c:url value="/item/add"/>">추가</a>
+                            <a class="collapse-item" href="<c:url value="/item/get"/>">조회</a>
                         </div>
                     </div>
                 </li>

@@ -3,7 +3,9 @@ package com.hana.app.service;
 import com.hana.app.data.dto.ItemDto;
 import com.hana.app.frame.HanaService;
 import com.hana.app.repository.ItemRepository;
+import com.hana.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,12 +13,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ItemService implements HanaService<Integer, ItemDto> {
-
     final ItemRepository itemRepository;
+
+    @Value("${app.dir.uploadimgdir}")
+    String imgdir;
 
     @Override
     public int add(ItemDto itemDto) throws Exception {
-        return itemRepository.insert(itemDto);
+        int result = 0;
+        // 이미지 저장 (/imgs에)
+        result = itemRepository.insert(itemDto);
+        FileUploadUtil.saveFile(itemDto.getImage(), imgdir);
+        return result;
     }
 
     @Override

@@ -44,7 +44,7 @@
         send:function (){
             $('#register_form').attr({
                 'method': 'post',
-                'action': '<c:url value="/cust/addimpl" />'
+                'action': '<c:url value="/item/addimpl" />'
             })
             $('#register_form').submit();
         }
