@@ -14,17 +14,25 @@
             window.location.href = '<c:url value="/mypage/add" />?id=${id}'
         })
     })
+
     $(document).ready(function (){
         $('#addrEditBtn').click(function (){
-            window.location.href = '<c:url value="/mypage/edit" />'
+            let addressId = $(this).data('address-id');
+            window.location.href = '<c:url value="/mypage/edit"/>?addrId=' + addressId + '&id=${id}';
         })
     })
+
     $(document).ready(function (){
         $('#addrDelBtn').click(function (){
-            window.location.href = '<c:url value="/mypage/del" />'
+            let res = confirm("삭제하시겠습니까?");
+            if (res) {
+                let addressId = $(this).data('address-id');
+                window.location.href = '<c:url value="/mypage/delImpl"/>?addrId=' + addressId + '&id=${id}';
+            }
         })
     })
 </script>
+
 <div class="container">
     <h2>${id}님의 마이페이지</h2>
     <br/>

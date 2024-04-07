@@ -3,6 +3,7 @@ package com.hana.controller;
 import com.hana.app.data.dto.AddrDto;
 import com.hana.app.service.AddrService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/mypage")
 @RequiredArgsConstructor
+@Slf4j
 public class MyPageController {
     final AddrService addrService;
     String dir = "mypage/";
@@ -43,13 +45,52 @@ public class MyPageController {
         return "index";
     }
 
-    @RequestMapping("/addImpl")
-    public String addImpl(Model model, AddrDto addrDto) {
+    @RequestMapping("/edit")
+    public String edit(Model model, @RequestParam("addrId") int addressId) {
+        String dir = "mypage/";
+        AddrDto addrDto = null;
+
         try {
-            addrService.add(addrDto);
+            addrDto = addrService.get(addressId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/mypage/";
+
+        model.addAttribute("center", dir + "edit");
+        model.addAttribute("left", dir + "left");
+        model.addAttribute("address", addrDto);
+        return "index";
+    }
+
+    @RequestMapping("/addImpl")
+    public String addImpl(@RequestParam("addrName") String addrName, @RequestParam("addrDetail") String addrDetail,
+                          @RequestParam("custId") String custId) {
+        try {
+            addrService.add(new AddrDto(0, addrName, addrDetail, custId));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/mypage/?id=" + custId;
+    }
+
+    @RequestMapping("/editImpl")
+    public String editImpl(AddrDto addrDto) {
+        try {
+            addrService.modify(addrDto);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:/mypage/" + "?id=" + addrDto.getCustId();
+    }
+
+    @RequestMapping("/delImpl")
+    public String delImpl(@RequestParam("addrId") int addrId, @RequestParam("id") String id) {
+        try {
+            addrService.del(addrId);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return "redirect:/mypage/" + "?id=" + id;
     }
 }

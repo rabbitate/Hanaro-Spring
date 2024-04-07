@@ -12,6 +12,7 @@
     let addradd = {
         url: '',
         init:function (url) {
+            this.url = url;
             $('#addradd_form > button').click(function (){
                 let name = $('#name').val();
                 let detail = $('#detail').val();
@@ -29,28 +30,31 @@
             })
         },
         send:function (){
-            $('addradd_form').attr({
+            $('#addradd_form').attr({
                 'method': 'post',
-                'url': this.url
+                'action': this.url
             })
-            $('addradd_form').submit();
+            $('#addradd_form').submit();
         }
     };
 
     $(function (){
         addradd.init('<c:url value="/mypage/addImpl" />');
-    })
+    });
 </script>
 <div class="container">
     <h3>주소 정보 추가</h3>
     <form id="addradd_form" action="">
         <div class="form-group">
             <label for="name">주소 이름:</label>
-            <input type="text" class="form-control" id="name" placeholder="주소 이름을 입력하세요..." name="name">
+            <input type="text" class="form-control" id="name" placeholder="주소 이름을 입력하세요..." name="addrName">
         </div>
         <div class="form-group">
             <label for="detail">주소 상세:</label>
-            <input type="text" class="form-control" id="detail" placeholder="주소 상세를 입력하세요..." name="detail">
+            <input type="text" class="form-control" id="detail" placeholder="주소 상세를 입력하세요..." name="addrDetail">
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="custId" value="${id}" name="custId">
         </div>
         <button type="button" class="btn btn-primary">추가</button>
     </form>

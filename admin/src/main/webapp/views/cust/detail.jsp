@@ -71,7 +71,6 @@
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" value="${cust.name}"  class="form-control" id="name" placeholder="Enter name" name="name">
-
                     </div>
                     <button id="btn_update" type="button" class="btn btn-primary">수정</button>
                 </form>

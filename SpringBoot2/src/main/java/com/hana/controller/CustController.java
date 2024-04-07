@@ -64,7 +64,7 @@ public class CustController {
             model.addAttribute("center", dir + "registerfail");
         }
 
-        return "redirect:/cust/";
+        return "redirect:/cust/getall";
     }
 
     @RequestMapping("/getImpl")
