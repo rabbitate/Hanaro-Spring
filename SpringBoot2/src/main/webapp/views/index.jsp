@@ -9,6 +9,8 @@
 <!-- JSTL -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -53,6 +55,8 @@
 
     <div class="jumbotron text-center" style="margin-bottom:0">
         <h1>HTML5 & JavaScript</h1>
+        <h5><spring:message code="site.title"  arguments="aa,aa"  /></h5>
+        <h5><spring:message code="site.phone"/></h5>
     </div>
 
     <ul class="nav justify-content-end">
