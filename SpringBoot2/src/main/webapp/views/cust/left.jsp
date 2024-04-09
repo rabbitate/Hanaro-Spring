@@ -19,4 +19,7 @@
   <li class="nav-item">
     <a class="nav-link" href="<c:url value="/cust/getall"/>">전체 조회</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<c:url value="/cust/allpage?pageNo=1"/>">전체 조회(페이지)</a>
+  </li>
 </ul>

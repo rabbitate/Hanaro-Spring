@@ -21,8 +21,8 @@ class InsertTests {
     @Test
     void contextLoads() {
         CommentDto commentDto = CommentDto.builder().
-                custId("id01").commentContent("댓글3").
-                boardId(3).build();
+                custId("id01").commentContent("댓글1").
+                boardId(2).build();
         try {
             commentService.add(commentDto);
             log.info("----------OK----------------");
