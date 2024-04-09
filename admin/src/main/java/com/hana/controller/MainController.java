@@ -35,7 +35,7 @@ public class MainController {
     }
 
     @RequestMapping("/loginimpl")
-    public String loginimpl(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession httpSession) {
+    public String loginimpl(Model model, @RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession httpSession) {
         AdminDto adminDto = null;
         try {
             adminDto = adminService.get(id);
@@ -47,7 +47,8 @@ public class MainController {
             }
             httpSession.setAttribute("admin", adminDto);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            model.addAttribute("msg", "아이디 또는 비밀번호가 틀립니다");
+//            throw new RuntimeException(e);
         }
 
         return "index";
