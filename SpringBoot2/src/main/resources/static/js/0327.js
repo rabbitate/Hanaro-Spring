@@ -28,42 +28,6 @@ let login = {
     }
 };
 
-// register
-let register = {
-    url: '',
-    init:function (url) {
-        this.url = url;
-        $('#register_form > button').click(function () {
-            let name =  $('#name').val();
-            let id =  $('#id').val();
-            let pwd =  $('#pwd').val();
-            if (name == '' || name == null) {
-                alert("이름을 입력하세요");
-                $('#name').focus();
-                return;
-            }
-            if (id == '' || id == null) {
-                alert("아이디를 입력하세요");
-                $('#id').focus();
-                return;
-            }
-            if (pwd == '' || pwd == null) {
-                alert("비밀번호를 입력하세요");
-                $('#pwd').focus();
-                return;
-            }
-            register.send();
-        })
-    },
-    send:function () {
-        $('#register_form').attr({
-            'method': 'post',
-            'action': this.url
-        })
-        $('#register_form').submit();
-    }
-};
-
 // html2
 let datas = [
     {"id":"id01", "name":"james01"},

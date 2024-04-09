@@ -14,17 +14,20 @@
 </script>
 
 <div class="container">
-    <h2>Login Page</h2>
+    <h2>로그인</h2>
     <form id="login_form" action="">
         <div class="form-group">
-            <label for="id">ID:</label>
+            <label for="id">아이디:</label>
             <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
         </div>
         <div class="form-group">
-            <label for="pwd">Password:</label>
+            <label for="pwd">비밀번호:</label>
             <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
         </div>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <p>${msg}</p>
+        </div>
+        <button type="button" class="btn btn-primary">로그인</button>
     </form>
 </div>
 

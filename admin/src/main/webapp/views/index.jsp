@@ -6,7 +6,6 @@
 <html lang="ko">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -413,7 +412,7 @@
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
 
                     </div>
-
+                    <span id="login_msg"></span>
                     <button type="button" class="btn btn-primary">LOGIN</button>
                 </form>
             </div>

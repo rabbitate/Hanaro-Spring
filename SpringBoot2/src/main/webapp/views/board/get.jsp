@@ -1,16 +1,28 @@
 <%--
   Created by IntelliJ IDEA.
   User: rabbikim
-  Date: 3/27/24
-  Time: 12:09 PM
+  Date: 4/3/24
+  Time: 10:54 AM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script>
+    $(document).ready(function (){
+        $('#boardDelBtn').click(function (){
+            let res = confirm("삭제하시겠습니까?");
+            if (res) {
+                window.location.href = '<c:url value="/board/del"/>' + "?boardId=" + $(this).data('article-id');
+            }
+        })
+    })
+</script>
+
 <div class="container">
-    <h3>게시판 목록</h3>
+    <h2>게시판 목록</h2>
     <br/>
     <table class="table table-striped" id="boardTable">
         <thead>
@@ -25,7 +37,7 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="article" items="${ranks}">
+            <c:forEach var="article" items="${list}">
                 <tr>
                     <td>${article.boardId}</td>
                     <td><a href="<c:url value="/board/detail"/>?boardId=${article.boardId}">${article.boardTitle}</a></td>
