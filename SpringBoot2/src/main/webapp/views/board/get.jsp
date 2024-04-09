@@ -43,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="article" items="${list}">
+            <c:forEach var="article" items="${cpage.getList()}">
                 <tr>
                     <td>${article.boardId}</td>
                     <td>
@@ -73,4 +73,5 @@
             </c:forEach>
         </tbody>
     </table>
+    <jsp:include page="page.jsp"/>
 </div>

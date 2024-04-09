@@ -30,6 +30,11 @@
                (select count(*) from db_comment where board_id=b.board_id) as comment_cnt
         from db_board b
     </select>
+    <select id="getPage" resultType="boardDto">
+        select b.*,
+               (select count(*) from db_comment where board_id=b.board_id) as comment_cnt
+        from db_board b
+    </select>
     <select id="getRank" resultType="boardDto">
         SELECT * FROM db_board ORDER BY board_cnt DESC LIMIT 3
     </select>

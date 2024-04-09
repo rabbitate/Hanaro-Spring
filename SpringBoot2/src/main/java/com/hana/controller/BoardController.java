@@ -1,5 +1,6 @@
 package com.hana.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.hana.app.data.dto.BoardDto;
 import com.hana.app.service.BoardService;
 import jakarta.servlet.http.HttpSession;
@@ -34,23 +35,30 @@ public class BoardController {
             throw new RuntimeException(e);
         }
 
-        return "redirect:/board/get";
+        return "redirect:/board/get?pageNo=1";
     }
 
     @RequestMapping("/get")
-    public String get(Model model, HttpSession httpSession) {
+    public String get(Model model, HttpSession httpSession, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo) {
         List<BoardDto> list = null;
         String custId = (String) httpSession.getAttribute("id");
+
+        PageInfo<BoardDto> page;
         try {
             // custId가 작성한 글만 가져오기
 //            list = boardService.getByCustId(custId);
 
             // 전체 글 가져오기
             list = boardService.get();
+
+            // page
+            page = new PageInfo<>(boardService.getPage(pageNo), 3);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+        model.addAttribute("cpage", page);
+        model.addAttribute("target", "/board");
         model.addAttribute("list", list);
         model.addAttribute("center", dir + "get");
         return "index";
