@@ -10,6 +10,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<style>
+    .comment{
+        color:red; !important
+    }
+</style>
+
 <script>
     $(document).ready(function (){
         $('#boardDelBtn').click(function (){
@@ -40,7 +46,12 @@
             <c:forEach var="article" items="${list}">
                 <tr>
                     <td>${article.boardId}</td>
-                    <td><a href="<c:url value="/board/detail"/>?boardId=${article.boardId}">${article.boardTitle}</a></td>
+                    <td>
+                        <a href="<c:url value="/board/detail"/>?boardId=${article.boardId}">${article.boardTitle}</a>
+                        <c:if test="${article.commentCnt != 0}">
+                            <span class="comment">[${article.commentCnt}]</span>
+                        </c:if>
+                    </td>
                     <td>${article.boardContent}</td>
                     <td>
                         <fmt:parseDate value="${article.boardRegdate}"

@@ -55,7 +55,7 @@
 </script>
 
 <div class="container">
-    <h3>게시판 글 수정</h3>
+    <h3>게시판 글 조회</h3>
     <br/>
     <p>
         등록일:
@@ -83,4 +83,32 @@
             <button type="button" class="btn btn-primary">작성</button>
         </c:if>
     </form>
+
+    <br/>
+
+    <%-- Comment List --%>
+    <h4>댓글</h4>
+    <table class="table table-striped" id="boardTable">
+        <thead>
+        <tr>
+            <th>아이디</th>
+            <th>내용</th>
+            <th>등록일</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="comment" items="${board.commentList}">
+            <tr>
+                <td>${comment.custId}</td>
+                <td>${comment.commentContent}</td>
+                <td>
+                    <fmt:parseDate value="${comment.commentRegdate}"
+                                   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                    <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${ parsedDateTime }" />
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
