@@ -12,7 +12,8 @@
 <script>
     $(document).ready(function (){
         $('#itemDelBtn').click(function (){
-            window.location.href = '<c:url value="/item/del"/>' + '?id=' +
+            let addressId = $(this).data('address-id')
+            window.location.href = '<c:url value="/item/del"/>' + '?id=' + addressId;
         })
     })
 </script>
@@ -33,7 +34,7 @@
         <tbody>
         <c:forEach var="item" items="${itemList}">
             <tr>
-                <td><img src="<c:url value="/imgs"/>/${i.imgName}"></td>
+                <td><img  src="<c:url value="/imgs"/>/${item.imgName}"></td>
                 <td>${item.itemName}</td>
                 <td>
                     <fmt:formatNumber type="number" pattern="###,###원" value="${item.itemPrice}" />
@@ -42,7 +43,7 @@
                 <td>${item.updateDate}</td>
                 <td>
                     <!-- 삭제 버튼 -->
-                    <button id="itemDelBtn" type="button" class="btn btn-danger deleteBtn" data-address-id="${a.addrId}">삭제</button>
+                    <button id="itemDelBtn" type="button" class="btn btn-danger deleteBtn" data-address-id="${item.itemId}">삭제</button>
                 </td>
             </tr>
         </c:forEach>

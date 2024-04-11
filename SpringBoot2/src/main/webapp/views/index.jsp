@@ -44,6 +44,11 @@
 
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
+        <!-- Web Socket -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
         <style>
             .fakeimg {
                 height: 200px;
@@ -73,6 +78,7 @@
                     <a class="nav-link" href="#">ABOUT US</a>
                 </li>
             </c:when>
+
             <%-- 로그인 상태 --%>
             <c:otherwise>
                 <li class="nav-item">
@@ -80,6 +86,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/logout"/>">LOG OUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/chat/"/>">CHAT</a>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -108,6 +117,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/chart/"/>">Chart</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/weather/"/>">Weather</a>
+                </li>
+
                 <!-- 로그인을 해야 화면에 나타남 -->
                 <c:if test="${id != null}">
                     <li class="nav-item">

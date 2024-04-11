@@ -9,8 +9,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script>
+    let center = {
+        init:function (){
+            $.ajax({
+                url: '<c:url value="/wh"/>',
+                success:(result) => {
+                    let text = result.response.body.items.item[0].wfSv;
+                    $('#wh').text(text);
+                }
+            })
+        }
+    }
+    $(function (){
+        center.init();
+    })
+</script>
 <div class="container">
-    <h3>게시판 목록</h3>
+    <h3>게시판 상위 목록</h3>
     <br/>
     <table class="table table-striped" id="boardTable">
         <thead>
@@ -50,4 +66,7 @@
             </c:forEach>
         </tbody>
     </table>
+
+    <h5>오늘의 날씨</h5>
+    <p id="wh"></p>
 </div>

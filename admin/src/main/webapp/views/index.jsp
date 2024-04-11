@@ -30,18 +30,23 @@
     <script src="<c:url value="/vendor/jquery/jquery.min.js"/>"></script>
     <script src="<c:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
 
-
     <!-- Core plugin JavaScript-->
     <script src="<c:url value="/vendor/jquery-easing/jquery.easing.min.js"/>"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="<c:url value="/js/sb-admin-2.min.js"/>"></script>
+
     <!-- HighCharts  -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- Web Socket -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
     <script>
         let index = {
@@ -87,7 +92,16 @@
             <a class="nav-link" href="<c:url value="/" />">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
+
         </li>
+
+        <c:if test="${sessionScope.admin != null}">
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/websocket" />">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Web Socket</span></a>
+            </li>
+        </c:if>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -136,7 +150,6 @@
                 <br/>
             </c:otherwise>
         </c:choose>
-
 
         <!-- Divider -->
         <hr class="sidebar-divider">

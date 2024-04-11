@@ -15,6 +15,7 @@ spring:
     #driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
     #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
+    # user01/111111
     username: user01
     password: 111111
 mybatis:
@@ -31,4 +32,5 @@ app:
     uploadimgdir: /Users/rabbikim/Desktop/project/imgs/ # 파일 업로드용
     logdir: file:/Users/rabbikim/Desktop/project/logs/
   url:
-    chart-url: http://127.0.0.1:81
+    server-url: http://172.16.21.235:81
+#    server-url: http://127.0.0.1:81
