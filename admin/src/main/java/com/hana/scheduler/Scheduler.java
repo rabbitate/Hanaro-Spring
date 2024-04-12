@@ -29,7 +29,7 @@ public class Scheduler {
         adminMsg.setContent3(content3);
         adminMsg.setContent4(content4);
 
-        simpMessageSendingOperations.convertAndSend("send2", adminMsg);
+        simpMessageSendingOperations.convertAndSend("/send2", adminMsg);
     }
 
     @Scheduled(cron = "1 0 0 1,8,15,22 * *")
