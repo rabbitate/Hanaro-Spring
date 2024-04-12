@@ -23,6 +23,7 @@ public class MainController {
     @RequestMapping("/")
     public String main(Model model){
         model.addAttribute("charturl",serverUrl);
+        model.addAttribute("serverurl",serverUrl);
         return "index";
     }
 
