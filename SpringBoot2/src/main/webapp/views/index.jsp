@@ -46,8 +46,8 @@
 
         <!-- Web Socket -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+        <script src="<c:url value="/webjars/sockjs-client/sockjs.min.js"/>"></script>
+        <script src="<c:url value="/webjars/stomp-websocket/stomp.min.js"/>"></script>
 
         <style>
             .fakeimg {
