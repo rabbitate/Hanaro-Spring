@@ -11,7 +11,9 @@
 <script>
     // register
     let register = {
-        init: function () {
+        url: '',
+        init: function (url) {
+            this.url = url;
             $('#register_form > button').click(function (){
                 let name = $('#name').val();
                 let id = $('#id').val();
@@ -47,6 +49,9 @@
                     success:(result)=>{
                         if (result == '0') {
                             let msg = '중복되는 아이디입니다';
+                            $('#check_msg').html(msg);
+                        } else {
+                            let msg = '사용 가능한 아이디입니다';
                             $('#check_msg').html(msg);
                         }
                     }

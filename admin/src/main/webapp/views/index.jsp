@@ -101,6 +101,11 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Web Socket</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/notify" />">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Notify</span></a>
+            </li>
         </c:if>
 
         <!-- Divider -->

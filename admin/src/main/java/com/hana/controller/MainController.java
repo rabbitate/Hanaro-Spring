@@ -34,6 +34,13 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/notify")
+    public String notify(Model model){
+        model.addAttribute("serverurl",serverUrl);
+        model.addAttribute("center","notify");
+        return "index";
+    }
+
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession) {
         if (httpSession != null) {

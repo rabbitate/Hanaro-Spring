@@ -3,6 +3,7 @@ package com.hana.controller;
 import com.github.pagehelper.PageInfo;
 import com.hana.app.data.dto.CustDto;
 import com.hana.app.service.CustService;
+import com.hana.util.StringEncryptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +47,10 @@ public class CustController {
 
         try {
             list = custService.get();
+            // 이름 복호화
+            list.stream().forEach(custDto -> {
+                custDto.setName(StringEncryptor.decryptor(custDto.getName()));
+            });
             model.addAttribute("custs", list);
             model.addAttribute("left", dir + "left");
             model.addAttribute("center", dir + "getall");

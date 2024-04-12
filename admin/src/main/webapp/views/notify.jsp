@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rabbikim
-  Date: 3/27/24
-  Time: 2:14 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
@@ -37,9 +31,7 @@
         stompClient:null,
         init:function(){
             this.id = $('#adm_id').text();
-            $('#connect').click(()=>{
-                this.connect();
-            });
+            this.connect();
             $('#disconnect').click(()=>{
                 this.disconnect();
             });
@@ -50,25 +42,10 @@
                 });
                 this.stompClient.send("/receiveall", {}, msg);
             });
-            $('#sendme').click(()=>{
-                let msg = JSON.stringify({
-                    'sendid' : this.id,
-                    'content1' : $("#metext").val()
-                });
-                this.stompClient.send("/receiveme", {}, msg);
-            });
-            $('#sendto').click(()=>{
-                var msg = JSON.stringify({
-                    'sendid' : this.id,
-                    'receiveid' : $('#target').val(),
-                    'content1' : $('#totext').val()
-                });
-                this.stompClient.send('/receiveto', {}, msg);
-            });
         },
         connect:function(){
             let sid = this.id;
-            let socket = new SockJS('${serverUrl}/ws');
+            let socket = new SockJS('${serverurl}/notiws');
             this.stompClient = Stomp.over(socket);
 
             this.stompClient.connect({}, function(frame) {
@@ -76,17 +53,6 @@
                 console.log('Connected: ' + frame);
                 this.subscribe('/send', function(msg) {
                     $("#all").prepend(
-                        "<h4>" + JSON.parse(msg.body).sendid +":"+
-                        JSON.parse(msg.body).content1
-                        + "</h4>");
-                });
-                this.subscribe('/send/'+sid, function(msg) {
-                    $("#me").prepend(
-                        "<h4>" + JSON.parse(msg.body).sendid +":"+
-                        JSON.parse(msg.body).content1+ "</h4>");
-                });
-                this.subscribe('/send/to/'+sid, function(msg) {
-                    $("#to").prepend(
                         "<h4>" + JSON.parse(msg.body).sendid +":"+
                         JSON.parse(msg.body).content1
                         + "</h4>");
@@ -113,7 +79,13 @@
     });
 </script>
 
+
+
 <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Web Socket</h1>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -122,24 +94,14 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="col-sm-5">
-                    <h1 id="adm_id">${sessionScope.id}</h1>
+                    <h1 id="adm_id">${sessionScope.admin.id}</h1>
                     <H1 id="status">Status</H1>
-                    <button id="connect">Connect</button>
                     <button id="disconnect">Disconnect</button>
+                    <br/>
 
                     <h3>All</h3>
                     <input type="text" id="alltext"><button id="sendall">Send</button>
                     <div id="all"></div>
-
-                    <h3>Me</h3>
-                    <input type="text" id="metext"><button id="sendme">Send</button>
-                    <div id="me"></div>
-
-                    <h3>To</h3>
-                    <input type="text" id="target">
-                    <input type="text" id="totext"><button id="sendto">Send</button>
-                    <div id="to"></div>
-
                 </div>
             </div>
         </div>

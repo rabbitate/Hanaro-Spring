@@ -4,12 +4,14 @@ import com.hana.app.data.dto.BoardDto;
 import com.hana.app.data.dto.CustDto;
 import com.hana.app.service.BoardService;
 import com.hana.app.service.CustService;
+import com.hana.util.StringEncryptor;
 import com.hana.util.WeatherUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,7 @@ import java.util.Random;
 public class MainController {
     final CustService custService;
     final BoardService boardService;
+    final BCryptPasswordEncoder encoder;
 
     @Value("${app.key.wkey}")
     String wkey;
@@ -70,9 +73,13 @@ public class MainController {
                 throw new Exception();
             }
             // 비밀번호가 틀렸을 시 로그인 실패
-            if (!custDto.getPwd().equals(pwd)) {
+//            if (!custDto.getPwd().equals(pwd)) {
+//                throw new Exception();
+//            }
+            if (!encoder.matches(pwd, custDto.getPwd())) {
                 throw new Exception();
             }
+
             // 로그인 성공 처리
             httpSession.setAttribute("id", id);
         } catch (Exception e) {
@@ -108,6 +115,8 @@ public class MainController {
                                HttpSession httpSession) {
 //        log.info("Name: " + custDto.getName() + " ID: " + custDto.getId() + " Password: " + custDto.getPwd());
         try {
+            custDto.setName(StringEncryptor.encryptor(custDto.getName()));
+            custDto.setPwd(encoder.encode(custDto.getPwd()));
             custService.add(custDto);
             httpSession.setAttribute("id", custDto.getId());
         } catch (Exception e) {

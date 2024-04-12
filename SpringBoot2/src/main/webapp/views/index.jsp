@@ -45,9 +45,52 @@
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
         <!-- Web Socket -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="<c:url value="/webjars/sockjs-client/sockjs.min.js"/>"></script>
         <script src="<c:url value="/webjars/stomp-websocket/stomp.min.js"/>"></script>
+
+        <script>
+            let websocket = {
+                id:'',
+                stompClient:null,
+                init:function(){
+                    this.id = $('#adm_id').text();
+                    this.connect();
+                },
+                connect:function(){
+                    let sid = this.id;
+                    let socket = new SockJS('http://172.16.21.235:81/notiws');
+                    this.stompClient = Stomp.over(socket);
+
+                    this.stompClient.connect({}, function(frame) {
+                        console.log('Connected: ' + frame);
+                        this.subscribe('/send', function(msg) {
+
+                            $('#msg_box').append(
+                                '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">' +
+                                '<div class="toast-header">' +
+                                '<strong class="mr-auto pr-5 h4">'+(JSON.parse(msg.body).sendid)+'</strong>' +
+                                '<small class="text-muted h6">just now</small>' +
+                                '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                                '</div>' +
+                                '<div class="toast-body h6' +
+                                '">'+(JSON.parse(msg.body).content1)+'</div>' +
+                                '</div>'
+                            )
+                            $('.close').on('click', function(){
+                                $(this).parent().parent().remove();
+                            });
+                            $('.toast').toast('show');
+                        });
+
+                    });
+                }
+            };
+            $(function(){
+                websocket.init();
+            });
+        </script>
 
         <style>
             .fakeimg {
@@ -162,10 +205,16 @@
     </div>
     <%--End Center Area--%>
 
+    <div id="msg_box" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999;">
+    </div>
+
     <%--Start Bottom Area--%>
     <div class="text-center bg-dark" style="margin-bottom:0">
         <p>Footer</p>
     </div>
+
+
+
     <%--End Bottom Area--%>
 
     </body>
