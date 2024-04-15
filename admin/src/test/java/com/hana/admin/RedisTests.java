@@ -22,6 +22,6 @@ class RedisTests {
         log.info("---------- Count ---------- ", + cnt);
 
         Iterable<LoginCust> list = loginCustRepository.findAll();
-        list.forEach(c -> { c.toString(); });
+        list.forEach(c -> { log.info(c.toString()); });
     }
 }
