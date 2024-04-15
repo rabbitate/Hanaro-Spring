@@ -87,20 +87,19 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="<c:url value="/" />">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-
-        </li>
-
         <c:if test="${sessionScope.admin != null}">
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/logininfo" />">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>로그인 현황</span></a>
+            </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="<c:url value="/websocket" />">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Web Socket</span></a>
             </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="<c:url value="/notify" />">
                     <i class="fas fa-fw fa-tachometer-alt"></i>

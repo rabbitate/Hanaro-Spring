@@ -1,6 +1,8 @@
 package com.hana.controller;
 
 import com.hana.app.data.dto.AdminDto;
+import com.hana.app.data.entity.LoginCust;
+import com.hana.app.repository.LoginCustRepository;
 import com.hana.app.service.AdminService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class MainController {
     private final AdminService adminService;
+    private final LoginCustRepository loginCustRepository;
 
     @Value("${app.url.server-url}")
     String serverUrl;
@@ -24,6 +27,16 @@ public class MainController {
     public String main(Model model){
         model.addAttribute("charturl",serverUrl);
         model.addAttribute("serverurl",serverUrl);
+        return "index";
+    }
+
+    @RequestMapping("/logininfo")
+    public String logininfo(Model model){
+        long cnt = loginCustRepository.count();
+        Iterable<LoginCust> list = loginCustRepository.findAll();
+        model.addAttribute("center","login_info");
+        model.addAttribute("cnt", cnt);
+        model.addAttribute("list", list);
         return "index";
     }
 

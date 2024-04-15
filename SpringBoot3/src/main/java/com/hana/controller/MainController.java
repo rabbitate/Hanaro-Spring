@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Controller
@@ -85,20 +84,14 @@ public class MainController {
                 throw new Exception();
             }
 
-            // 로그인 시도하려는데 redis에 id가 있다면 Exception을 throw 한다
-            Optional<LoginCust> loginCust = loginCustRepository.findById(id);
-            if (loginCust.isPresent()) {
-                throw new Exception();
-            }
-
-            loginCustRepository.save(LoginCust.builder().loginId(custDto.getId()).build());
+            LoginCust loginCust = LoginCust.builder().loginId(custDto.getId()).build();
+            loginCustRepository.save(loginCust);
 
             // 로그인 성공 처리
             httpSession.setAttribute("id", id);
         } catch (Exception e) {
             model.addAttribute("center", "login");
-            model.addAttribute("msg","로그인 되어있습니다");
-            return "index";
+            model.addAttribute("msg","아이디 또는 비밀번호가 틀렸습니다");
 //            throw new RuntimeException(e);
         }
 
