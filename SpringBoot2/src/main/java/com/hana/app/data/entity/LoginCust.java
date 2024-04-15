@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
-@RedisHash(value = "logincust", timeToLive = 600)
+import java.time.LocalDateTime;
+
+@RedisHash(value = "logincust", timeToLive = 60000)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

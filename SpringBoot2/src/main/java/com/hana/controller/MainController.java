@@ -2,6 +2,8 @@ package com.hana.controller;
 
 import com.hana.app.data.dto.BoardDto;
 import com.hana.app.data.dto.CustDto;
+import com.hana.app.data.entity.LoginCust;
+import com.hana.app.repository.LoginCustRepository;
 import com.hana.app.service.BoardService;
 import com.hana.app.service.CustService;
 import com.hana.util.StringEncryptor;
@@ -29,6 +31,7 @@ public class MainController {
     final CustService custService;
     final BoardService boardService;
     final BCryptPasswordEncoder encoder;
+    final LoginCustRepository loginCustRepository;
 
     @Value("${app.key.wkey}")
     String wkey;
@@ -55,6 +58,7 @@ public class MainController {
     @RequestMapping("/logoutimpl")
     public String logout(Model model, HttpSession httpSession) {
         if (httpSession != null) {
+            loginCustRepository.deleteById((String) httpSession.getAttribute("id"));
             httpSession.invalidate();
         }
         return "index";
@@ -79,6 +83,9 @@ public class MainController {
             if (!encoder.matches(pwd, custDto.getPwd())) {
                 throw new Exception();
             }
+
+            LoginCust loginCust = LoginCust.builder().loginId(custDto.getId()).build();
+            loginCustRepository.save(loginCust);
 
             // 로그인 성공 처리
             httpSession.setAttribute("id", id);
@@ -118,6 +125,8 @@ public class MainController {
             custDto.setName(StringEncryptor.encryptor(custDto.getName()));
             custDto.setPwd(encoder.encode(custDto.getPwd()));
             custService.add(custDto);
+            loginCustRepository.save(LoginCust.builder().loginId(custDto.getId()).build());
+
             httpSession.setAttribute("id", custDto.getId());
         } catch (Exception e) {
 //            throw new RuntimeException(e);
