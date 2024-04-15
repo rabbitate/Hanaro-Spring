@@ -128,7 +128,7 @@
                     <a class="nav-link" href="<c:url value="/mypage/"/>?id=${id}">${id}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/logout"/>">LOG OUT</a>
+                    <a class="nav-link" href="<c:url value="/logoutimpl"/>">LOG OUT</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/chat/"/>">CHAT</a>

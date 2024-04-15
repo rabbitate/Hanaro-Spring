@@ -52,7 +52,7 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("/logoutimpl")
     public String logout(Model model, HttpSession httpSession) {
         if (httpSession != null) {
             httpSession.invalidate();
