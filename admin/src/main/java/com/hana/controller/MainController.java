@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -32,11 +35,18 @@ public class MainController {
 
     @RequestMapping("/logininfo")
     public String logininfo(Model model){
-        long cnt = loginCustRepository.count();
         Iterable<LoginCust> list = loginCustRepository.findAll();
+        List<LoginCust> loginCustList = new ArrayList<>();
+
+        list.forEach(loginCust -> {
+            if (loginCust != null) {
+                loginCustList.add(loginCust);
+            }
+        });
+
         model.addAttribute("center","login_info");
-        model.addAttribute("cnt", cnt);
-        model.addAttribute("list", list);
+        model.addAttribute("cnt", loginCustList.size());
+        model.addAttribute("list", loginCustList);
         return "index";
     }
 

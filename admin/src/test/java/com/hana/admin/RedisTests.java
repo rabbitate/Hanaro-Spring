@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -18,10 +19,16 @@ class RedisTests {
 
     @Test
     void contextLoads() {
-        long cnt = loginCustRepository.count();
-        log.info("---------- Count ---------- ", + cnt);
+//        long cnt = loginCustRepository.count();
+//        log.info("---------- Count ---------- ", + cnt);
 
         Iterable<LoginCust> list = loginCustRepository.findAll();
-        list.forEach(c -> { log.info(c.toString()); });
+        List<LoginCust> loginCustList = new ArrayList<>();
+
+        list.forEach(loginCust -> {
+            if (loginCust != null) {
+                loginCustList.add(loginCust);
+            }
+        });
     }
 }

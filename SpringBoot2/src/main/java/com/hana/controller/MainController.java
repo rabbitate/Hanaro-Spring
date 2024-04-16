@@ -6,11 +6,14 @@ import com.hana.app.data.entity.LoginCust;
 import com.hana.app.repository.LoginCustRepository;
 import com.hana.app.service.BoardService;
 import com.hana.app.service.CustService;
+import com.hana.util.FileUploadUtil;
+import com.hana.util.NcpUtil;
 import com.hana.util.StringEncryptor;
 import com.hana.util.WeatherUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,6 +41,15 @@ public class MainController {
     @Value("${app.key.wkey}")
     String wkey;
 
+    @Value("${app.dir.uploadimgdir}")
+    String uploadImgDir;
+
+    @Value("${app.key.ncp-id}")
+    String ncpId;
+
+    @Value("${app.key.ncp-secret}")
+    String ncpSecret;
+
     @RequestMapping("/")
     public String main(Model model) throws Exception {
         Random r = new Random();
@@ -53,15 +66,6 @@ public class MainController {
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("center", "login");
-        return "index";
-    }
-
-    @RequestMapping("/logoutimpl")
-    public String logout(Model model, HttpSession httpSession) {
-        if (httpSession != null) {
-            loginCustRepository.deleteById((String) httpSession.getAttribute("id"));
-            httpSession.invalidate();
-        }
         return "index";
     }
 
@@ -117,6 +121,15 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/logoutimpl")
+    public String logout(Model model, HttpSession httpSession) {
+        if (httpSession != null) {
+            loginCustRepository.deleteById((String) httpSession.getAttribute("id"));
+            httpSession.invalidate();
+        }
+        return "index";
+    }
+
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("center", "register");
@@ -157,5 +170,32 @@ public class MainController {
     @ResponseBody
     public Object wh(Model model) throws IOException, ParseException {
         return WeatherUtil.getWeather("109", wkey);
+    }
+
+    @RequestMapping("/pic")
+    public String pic(Model model) {
+        model.addAttribute("center", "pic");
+        return "index";
+    }
+
+    @RequestMapping("/saveimg")
+    @ResponseBody
+    public String saveimg(@RequestParam("file") MultipartFile file) {
+        String imgname = file.getOriginalFilename();
+        FileUploadUtil.saveFile(file, uploadImgDir);
+        return imgname;
+    }
+
+    @RequestMapping("/ncp")
+    public String ncp(Model model) {
+        model.addAttribute("center", "summary");
+        return "index";
+    }
+
+    @RequestMapping("/summary")
+    @ResponseBody
+    public Object summary(@RequestParam("content") String content) {
+        JSONObject jsonObject = (JSONObject) NcpUtil.getSummary(ncpId, ncpSecret, content);
+        return jsonObject;
     }
 }

@@ -89,12 +89,6 @@
 
         <c:if test="${sessionScope.admin != null}">
             <li class="nav-item active">
-                <a class="nav-link" href="<c:url value="/logininfo" />">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>로그인 현황</span></a>
-            </li>
-
-            <li class="nav-item active">
                 <a class="nav-link" href="<c:url value="/websocket" />">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Web Socket</span></a>
@@ -129,6 +123,7 @@
                             <h6 class="collapse-header">Customer Management:</h6>
                             <a class="collapse-item" href="<c:url value="/cust/add"/>">회원 추가</a>
                             <a class="collapse-item" href="<c:url value="/cust/get"/>">회원 조회</a>
+                            <a class="collapse-item" href="<c:url value="/logininfo"/>">로그인 현황</a>
                         </div>
                     </div>
                 </li>
