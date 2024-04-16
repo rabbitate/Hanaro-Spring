@@ -36,6 +36,9 @@ app:
     imgdir: file:/Users/rabbikim/Desktop/project/imgs/ # 화면 출력용
     uploadimgdir: /Users/rabbikim/Desktop/project/imgs/ # 파일 업로드용
     logdir: file:/Users/rabbikim/Desktop/project/logs/
+  key:
+    ncp-id: ptf9npiajc
+    ncp-secret: eprmktYMlc9BDpE5ZviGi0Pln9yIU1gYXyGM3K6E
   url:
     server-url: http://172.16.21.235:81
 #    server-url: http://127.0.0.1:81

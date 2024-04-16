@@ -99,6 +99,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Notify</span></a>
             </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="<c:url value="/chat" />">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Chat</span></a>
+            </li>
         </c:if>
 
         <!-- Divider -->

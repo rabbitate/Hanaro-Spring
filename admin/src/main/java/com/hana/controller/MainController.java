@@ -64,6 +64,13 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/chat")
+    public String chat(Model model){
+        model.addAttribute("serverurl",serverUrl);
+        model.addAttribute("center","chat");
+        return "index";
+    }
+
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession) {
         if (httpSession != null) {
