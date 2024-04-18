@@ -1,5 +1,6 @@
 package com.hana.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,8 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 public class OCRUtil {
-    public static Object getResult(String imgpath, String imgname){
+    public static JSONObject getResult(String imgpath, String imgname){
         JSONObject obj = null;
 
         String apiURL = "https://gojlwur9ps.apigw.ntruss.com/custom/v1/30138/d653724c60ad4c6ea7db5f5202f340ce3f50a4c2d6d422e871bcf4f77fd86f96/infer";
@@ -114,9 +116,6 @@ public class OCRUtil {
         JSONObject jo1 = (JSONObject) images.get(0);
         JSONArray fields = (JSONArray) jo1.get("fields");
 
-//        JSONObject biznum_obj = (JSONObject) fields.get(0);
-//        String biznum = (String)biznum_obj.get("inferText");
-
         JSONObject bizname_obj = (JSONObject) fields.get(0);
         String bizname = (String)bizname_obj.get("inferText");
 
@@ -134,6 +133,24 @@ public class OCRUtil {
         map.put("bizowner", bizowner);
         map.put("bizdate", bizdate);
         map.put("bizadd", bizadd);
+
+        return map;
+    }
+
+    public static Map getCardData(JSONObject obj){
+        Map<String,String> map = new HashMap<>();
+        JSONArray images = (JSONArray) obj.get("images");
+        JSONObject jo1 = (JSONObject) images.get(0);
+        JSONArray fields = (JSONArray) jo1.get("fields");
+
+        JSONObject cardnum_obj = (JSONObject) fields.get(0);
+        String cardnum = (String)cardnum_obj.get("inferText");
+
+        JSONObject name_obj = (JSONObject) fields.get(1);
+        String name = (String)name_obj.get("inferText");
+
+        map.put("cardnum", cardnum);
+        map.put("name", name);
 
         return map;
     }

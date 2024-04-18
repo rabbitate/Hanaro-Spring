@@ -17,7 +17,7 @@
         send: function (){
             let content = $('#summaryContent').val();
             $.ajax({
-                url: '<c:url value="/summary"/>',
+                url: '<c:url value="ncp/summary"/>',
                 data: {'content': content},
                 success: (result) => {
                     $('#result').html(result.summary);

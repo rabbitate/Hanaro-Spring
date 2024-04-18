@@ -237,7 +237,7 @@
                     <a class="nav-link" href="<c:url value="/pic"/>">Pic</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/ncp"/>">Naver Cloud Platform</a>
+                    <a class="nav-link" href="<c:url value="/ncp/"/>">Naver Cloud Platform</a>
                 </li>
 
                 <!-- 로그인을 해야 화면에 나타남 -->

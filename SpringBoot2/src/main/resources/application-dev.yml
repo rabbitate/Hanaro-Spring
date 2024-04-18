@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 82
   servlet:
     encoding:
       charset: UTF-8
@@ -41,13 +41,17 @@ logging:
 app:
   url:
     server-url: http://172.16.21.235:81
+    chatbot-url: http://172.16.21.235
 #    server-url: http://172.16.21.91:81
   dir:
     imgdir: file:/Users/rabbikim/Desktop/project/imgs/ # 화면 출력용
     uploadimgdir: /Users/rabbikim/Desktop/project/imgs/ # 파일 업로드용
     logdir: file:/Users/rabbikim/Desktop/project/logs/
   key:
-    wkey: 1j3tIQEY%2F1B%2FIWM%2Bt5L%2BGNZHMp9NB%2BN9QOFgqp5e2KTuTJFr2sQRMkiN%2FznSAfcPouQCnTBBWcM3%2FTjUhgRRhQ%3D%3D
-    whkey: 71e07921805df819f7208ac3739bdf7c
+    wkey: ENC(B1Xa3fUX6q9cqbIT0zHIn15BEUG48YPcD+Mt9Dcb31XJ+Dx6DPDFLxXcrTc+SXTwuVIEl2cW9NwRBoVTPl6wzJ1AUyaq4PSHi7gB2EQRaFdL37o3nNS5y4zQhRqfFuJUnkEZMEUi148G87SXHWEBNBWlgWY1lqUA)
+    whkey: ENC(7EzilONGcryPAgyC/hbMJrxKmRQBi2/wn0THf3fUeTHUl+YspN6jSJmv3chkeRcq)
     ncp-id: ptf9npiajc
-    ncp-secret: eprmktYMlc9BDpE5ZviGi0Pln9yIU1gYXyGM3K6E
+    ncp-secret: ENC(upoi7px28RUeFP2y80UXh5Zv6nMXw85/bMhDx066JFjf+ZoBUAocdWIW0HgCW7q9zQgIZ5AZobs=)
+    chatbot_url: ENC(EOH6OJem2GudtleU2tPyuusYJOBImsK4Z8zT7xMy5vqLti/wlilWHnXzlQ8gACDFsqZQ68o1u1144hFgPZfEEkMubF/MZcRZ2vnd/bflge6VGf83H/lGy7zp9BGMIB21sWyyjGELAu/MnH88ga0wXkEiddaIKn2N8xFZOok2Pck=)
+    chatbot_key: ENC(wmUrbX3IWdQGBjfOD+xheez4KYNbDpf81xugVDzvfX8hoKKXTCdd+7uc6uYeXLpuH0qt8jj1fqg=)
+    kakao_rest_key: ENC(X8MBCnpuGZB7vp1nLMf/oxc8SYQ4awzA8iKSR0rpAuifBr5zEXHB1BHg+DwMd8Sn)

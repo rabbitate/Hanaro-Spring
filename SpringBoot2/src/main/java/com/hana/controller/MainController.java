@@ -44,12 +44,6 @@ public class MainController {
     @Value("${app.dir.uploadimgdir}")
     String uploadImgDir;
 
-    @Value("${app.key.ncp-id}")
-    String ncpId;
-
-    @Value("${app.key.ncp-secret}")
-    String ncpSecret;
-
     @RequestMapping("/")
     public String main(Model model) throws Exception {
         Random r = new Random();
@@ -185,19 +179,4 @@ public class MainController {
         FileUploadUtil.saveFile(file, uploadImgDir);
         return imgname;
     }
-
-    @RequestMapping("/ncp")
-    public String ncp(Model model) {
-        model.addAttribute("center", "summary");
-        return "index";
-    }
-
-    @RequestMapping("/summary")
-    @ResponseBody
-    public Object summary(@RequestParam("content") String content) {
-        JSONObject jsonObject = (JSONObject) NcpUtil.getSummary(ncpId, ncpSecret, content);
-        return jsonObject;
-    }
-
-
 }
