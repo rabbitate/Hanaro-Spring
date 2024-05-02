@@ -27,17 +27,15 @@ spring:
       prefix: /views/
       suffix: .jsp
   datasource:
-#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-
-    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://springboot2.cfsyc26eox2y.ap-northeast-2.rds.amazonaws.com:3306/shopdb?characterEncoding=utf8
-##    url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
-#    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
-#
-#    # user01/111111
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:log4jdbc:mysql://springboot2.cfsyc26eox2y.ap-northeast-2.rds.amazonaws.com/shopdb?characterEncoding=utf8
+    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
+    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
+
+    # user01/111111
     username: ENC(pkXtsT1k8PPq9YNsFgvGFw==)
     password: ENC(0jDz7THv5b/EpvzM7GtN/g==)
-
 mybatis:
   type-aliases-package: com.hana.app.data.dto
   mapper-locations: classpath:/mapper/*.xml
@@ -45,16 +43,15 @@ mybatis:
     map-underscore-to-camel-case: true
 logging:
   level:
-    root: info
+    root: error
 app:
   url:
     server-url: http://172.16.21.235:81
     chatbot-url: http://172.16.21.235
-#    server-url: http://172.16.21.91:81
   dir:
-    imgdir: file:/Users/rabbikim/Desktop/project/imgs/ # 화면 출력용
-    uploadimgdir: /Users/rabbikim/Desktop/project/imgs/ # 파일 업로드용
-    logdir: file:/Users/rabbikim/Desktop/project/logs/
+    imgdir: file:/root/imgs/ # 화면 출력용
+    uploadimgdir: /root/imgs/  # 파일 업로드용
+    logdir: file:/root/logs/
   key:
     wkey: ENC(B1Xa3fUX6q9cqbIT0zHIn15BEUG48YPcD+Mt9Dcb31XJ+Dx6DPDFLxXcrTc+SXTwuVIEl2cW9NwRBoVTPl6wzJ1AUyaq4PSHi7gB2EQRaFdL37o3nNS5y4zQhRqfFuJUnkEZMEUi148G87SXHWEBNBWlgWY1lqUA)
     whkey: ENC(7EzilONGcryPAgyC/hbMJrxKmRQBi2/wn0THf3fUeTHUl+YspN6jSJmv3chkeRcq)
