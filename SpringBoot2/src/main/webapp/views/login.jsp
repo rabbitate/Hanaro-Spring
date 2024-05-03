@@ -24,6 +24,7 @@
             <label for="pwd">비밀번호:</label>
             <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
         </div>
+        <input type="hidden" name="redirectURL" value="${redirectURL}"/>
         <div class="form-group">
             <p>${msg}</p>
         </div>

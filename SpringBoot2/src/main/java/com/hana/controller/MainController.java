@@ -58,14 +58,18 @@ public class MainController {
     }
 
     @RequestMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, @RequestParam("redirectURL") String redirectURL) {
+        model.addAttribute("redirectURL", redirectURL);
         model.addAttribute("center", "login");
         return "index";
     }
 
     @RequestMapping("/loginimpl")
     public String loginimpl(Model model,
-                            @RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession httpSession) {
+                            @RequestParam("id") String id,
+                            @RequestParam("pwd") String pwd,
+                            @RequestParam("redirectURL") String redirectURL,
+                            HttpSession httpSession) {
 //        log.info("---------");
 //        log.info(id + " " + pwd);
         CustDto custDto = null;
@@ -93,6 +97,10 @@ public class MainController {
 
             // 로그인 성공 처리
             httpSession.setAttribute("id", id);
+            if (redirectURL != null || !redirectURL.equals("")) {
+                // redirect:/html
+                return "redirect:" + redirectURL;
+            }
         } catch (Exception e) {
             model.addAttribute("center", "login");
             model.addAttribute("msg","로그인 되어있습니다");
